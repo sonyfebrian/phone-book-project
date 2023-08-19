@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ContactList from '../components/ContactList';
-import { useQuery } from '@apollo/client'
-import { GET_CONTACT_LIST } from '../queries';
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_CONTACT_LIST, DELETE_CONTACT } from '../queries';
 
 interface Contact {
     id: number;
@@ -17,6 +17,8 @@ interface ContactData {
 const Home: React.FC = () => {
     const { loading, error, data } = useQuery<ContactData>(GET_CONTACT_LIST);
     const [storedContacts, setStoredContacts] = useState<Contact[]>([]);
+
+    const [deleteContact] = useMutation(DELETE_CONTACT);
     // const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
     // const [favoriteContacts, setFavoriteContacts] = useState<Contact[]>([]);
     useEffect(() => {
@@ -24,6 +26,17 @@ const Home: React.FC = () => {
             setStoredContacts(data.contact);
         }
     }, [data]);
+
+    const handleDeleteContact = async (id: number) => {
+        try {
+            await deleteContact({ variables: { id } });
+            // Remove the deleted contact from the contactList
+            setStoredContacts(storedContacts.filter((contact) => contact.id !== id));
+        } catch (error) {
+            console.error('Error deleting contact:', error);
+            // Handle error
+        }
+    };
 
     console.log(storedContacts, data, "datanew")
     useEffect(() => {
@@ -49,10 +62,10 @@ const Home: React.FC = () => {
             <div className='container'>
                 <ul className='list-item'>
                     {storedContacts.map((item, i) => {
-                        console.log('Rendering ContactList for item:', item); // Add this console.log
+
                         return (
                             <li key={i}>
-                                <ContactList item={item} />
+                                <ContactList item={item} onDelete={handleDeleteContact} />
                             </li>
                         );
                     })}

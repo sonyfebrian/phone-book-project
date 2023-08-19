@@ -27,7 +27,7 @@ export const Col = styled.div`
 
 export const ContactInfoCol = styled.div`
   flex: 8;
-  cursor: pointer;
+
 `;
 
 export const ContactName = styled.div`
@@ -49,8 +49,8 @@ export const ContactPhone = styled.div`
   margin-top: 5px;
 `;
 
-
 export const IconButton = styled.div`
   display: inline-block;
   margin-right: 10px;
+  cursor: pointer;
 `;

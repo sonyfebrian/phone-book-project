@@ -24,11 +24,29 @@ interface Contact {
 
 interface Props {
     item: Contact;
+    onDelete: (id: number) => void;
 }
 
-const ContactList: React.FC<Props> = ({ item }) => {
+const ContactList: React.FC<Props> = ({ item, onDelete }) => {
+    // const [favoriteContacts, setFavoriteContacts] = useState<Contact[]>([]);
+    // const [contactList, setContactList] = useState<Contact[]>([])
+    // console.log(favoriteContacts, "favorit props")
 
-    console.log(item, "item props")
+    // console.log(contactList, "contact props")
+
+
+    // const handleToggleFavorite = (id: number) => {
+    //     const contactToToggle = item;
+
+    //     if (contactToToggle) {
+    //         if (favoriteContacts.includes(contactToToggle)) {
+    //             setFavoriteContacts(favoriteContacts.filter((contact) => contact.id !== id));
+    //         } else {
+    //             setFavoriteContacts([...favoriteContacts, contactToToggle]);
+    //             setContactList(contactList.filter((contact) => contact.id !== id));
+    //         }
+    //     }
+    // };
     // const { loading, error, data, fetchMore } = useQuery<ContactData>(GET_CONTACT_LIST);
 
     // const [storedContacts, setStoredContacts] = useState<Contact[]>([]);
@@ -225,7 +243,8 @@ const ContactList: React.FC<Props> = ({ item }) => {
 
                 </ContactInfoCol>
                 <Col>
-                    <IconButton>
+                    <IconButton onClick={() => onDelete(item.id)}>
+                        Add to Favorites
                         <MdDelete color="#FF6370" className="icon" style={{ zIndex: '1' }} />
                     </IconButton>
                     <IconButton>

@@ -26,16 +26,22 @@ export const globalStyles = css`
   height: auto;
   border-radius: 50%;
   }
-  .container {
-    padding: 0 20px; /* Default padding for both mobile and desktop */
 
-    @media (min-width: 768px) {
-      padding: 0 40px; /* Increased padding for desktop */
+  @media (min-width: 768px) {
+    .container {
+      padding: 0 40px;
     }
-  
-    @media (min-width: 1200px) {
-      padding: 0 80px; /* Even more padding for larger screens */
+
+    /* Add any other styles specific to this media query */
+  }
+
+  /* Media query for screen width 1200px and above */
+  @media (min-width: 1200px) {
+    .container {
+      padding: 0 80px;
     }
+
+    /* Add any other styles specific to this media query */
   }
 
   .list-item {
