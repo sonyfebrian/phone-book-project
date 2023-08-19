@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import { GET_CONTACT_LIST, DELETE_CONTACT, ADD_CONTACT, } from '../queries';
+import {
+    Container,
+    SearchInput,
+    ContactListStyle,
+    ContactItem,
+    Button,
+    PaginationButtons,
+} from './StyledComponents';
 
 interface Contact {
     id: number;
@@ -28,6 +36,8 @@ const ContactList: React.FC = () => {
     });
     const [offset, setOffset] = useState<number>(0);
     const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const contactsPerPage = 10;
 
     const mergedContacts = [...storedContacts, ...(data?.contact || [])];
     console.log(searchTerm, "data grap")
@@ -164,29 +174,36 @@ const ContactList: React.FC = () => {
         contact.first_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const indexOfLastContact = currentPage * contactsPerPage;
+    const indexOfFirstContact = indexOfLastContact - contactsPerPage;
+    const currentContacts = filteredContacts.slice(indexOfFirstContact, indexOfLastContact);
+
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
 
     return (
-        <div>
+        <Container>
             <h2>Contact List</h2>
-            <input
+            <SearchInput
                 type="text"
                 placeholder="Search contacts..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
             />
-            <ul>
+            <ContactListStyle>  <ul>
                 {filteredContacts.map(contact => (
-                    <li key={`contact-${contact.id}`}>
+                    <ContactItem key={`contact-${contact.id}`}>
                         {contact.first_name} {contact.last_name}
-                        <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
+                        <Button onClick={() => handleDeleteContact(contact.id)}>Delete</Button>
                         <ul>
                             {contact.phones.map((phone, index) => (
                                 <li key={`contact-${contact.id}-phone-${index}`}>{phone.number}</li>
                             ))}
                         </ul>
-                    </li>
+                    </ContactItem>
                 ))}
-            </ul>
+            </ul></ContactListStyle>
+
 
             {/* <ul>
                 {mergedContacts.map((contact) => (
@@ -202,6 +219,14 @@ const ContactList: React.FC = () => {
                 ))}
             </ul> */}
             <button onClick={loadMore}>Load More</button>
+            <PaginationButtons>
+                <Button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+                    Previous Page
+                </Button>
+                <Button onClick={() => paginate(currentPage + 1)} disabled={currentContacts.length < contactsPerPage}>
+                    Next Page
+                </Button>
+            </PaginationButtons>
             <h2>Add New Contact</h2>
             <form onSubmit={(e) => { e.preventDefault(); handleAddContact(); }}>
                 <div>
@@ -230,7 +255,7 @@ const ContactList: React.FC = () => {
                 </div>
                 <button type="submit">Add Contact</button>
             </form>
-        </div>
+        </Container>
     );
 };
 
