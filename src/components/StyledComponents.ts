@@ -26,20 +26,20 @@ export const SearchInput = styled.input`
 `;
 
 export const ContactListStyle = styled.ul`
-  list-style: none;
-  padding: 0;
+list-style-type: none;
+padding: 0;
+margin: 0;
 `;
 
 export const ContactItem = styled.li`
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f8f8f8;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+border: 1px solid #ddd;
+margin-top: -1px; /* Prevent double borders */
+background-color: #f6f6f6;
+padding: 12px;
+text-decoration: none;
+font-size: 18px;
+color: black;
+display: block
 `;
 
 export const Button = styled.button`
