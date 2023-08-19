@@ -7,6 +7,16 @@ export const Container = styled.div`
   font-family: Arial, sans-serif;
 `;
 
+
+export const Header = styled.header`
+display: flex;
+justify-content: space-evenly;
+color: #fff;
+background: linear-gradient(90deg, rgba(111,177,127,1) 0%, rgba(154,173,89,1) 100%);
+padding: 2em 0;
+align-items: center;
+`;
+
 export const SearchInput = styled.input`
   width: 100%;
   padding: 10px;

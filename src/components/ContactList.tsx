@@ -8,6 +8,7 @@ import {
     ContactItem,
     Button,
     PaginationButtons,
+    Header,
 } from './StyledComponents';
 
 interface Contact {
@@ -183,13 +184,15 @@ const ContactList: React.FC = () => {
 
     return (
         <Container>
-            <h2>Contact List</h2>
-            <SearchInput
-                type="text"
-                placeholder="Search contacts..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-            />
+            <Header>  <h2>Contact List</h2>
+                <SearchInput
+                    type="text"
+                    placeholder="Search contacts..."
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                />
+            </Header>
+
             <ContactListStyle>  <ul>
                 {filteredContacts.map(contact => (
                     <ContactItem key={`contact-${contact.id}`}>
