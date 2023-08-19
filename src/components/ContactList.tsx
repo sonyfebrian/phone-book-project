@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { GET_CONTACT_LIST, DELETE_CONTACT, ADD_CONTACT } from '../queries';
+import { GET_CONTACT_LIST, DELETE_CONTACT, ADD_CONTACT, } from '../queries';
 
 interface Contact {
     id: number;
