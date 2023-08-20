@@ -25,9 +25,11 @@ interface Contact {
 interface Props {
     item: Contact;
     onDelete: (id: number) => void;
+    onToggleFavorite: (id: number) => void;
+
 }
 
-const ContactList: React.FC<Props> = ({ item, onDelete }) => {
+const ContactList: React.FC<Props> = ({ item, onDelete, onToggleFavorite, }) => {
     // const [favoriteContacts, setFavoriteContacts] = useState<Contact[]>([]);
     // const [contactList, setContactList] = useState<Contact[]>([])
     // console.log(favoriteContacts, "favorit props")
@@ -211,7 +213,11 @@ const ContactList: React.FC<Props> = ({ item, onDelete }) => {
             <Row>
                 <Col>
                     <div className='icon'>
-                        <FaStar size={22} className=" text-white" />
+                        <IconButton onClick={() => onToggleFavorite(item.id)}>
+                            Add to Favorites
+                            <FaStar size={22} className=" text-white" />
+                        </IconButton>
+
                         <FaRegStar
                             size={26}
                             className=" text-white"
@@ -252,6 +258,7 @@ const ContactList: React.FC<Props> = ({ item, onDelete }) => {
                     </IconButton>
                 </Col>
             </Row>
+
             {/* <Container>
                 <Header>  <h2>Contact List</h2>
                     <SearchInput
