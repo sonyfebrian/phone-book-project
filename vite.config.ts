@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
-
+import path from 'path';
 const manifestForPlugin: Partial<VitePWAOptions> = {
 	registerType: "prompt",
 	includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
@@ -39,7 +39,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
       src: "/android-chrome-maskable-512x512.png",
       sizes: "512x512",
       type: "image/png",
-      purpose: "maskable"
+      purpose: "any maskable"
     }
   ],
 		theme_color: "#171717",
@@ -54,5 +54,13 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
-	plugins: [react(), VitePWA(manifestForPlugin)],
+  resolve: {
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+  },
+	plugins: [react({
+    jsxImportSource: "@emotion/react",
+    babel: {
+      plugins: ["@emotion/babel-plugin"],
+    },
+  }), VitePWA(manifestForPlugin)],
 })
