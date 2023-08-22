@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { ApolloProvider } from '@apollo/client';
-import client from './apollo';
+import client from '@/graphql/apolloClient.ts';
 import { Global } from '@emotion/react';
-import { globalStyles } from './styles/global.ts';
+import { globalStyles } from '@/styles/global.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ApolloProvider client={client}>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaRegStar } from "react-icons/fa";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import Icon from "@/assets/usericon.svg"
-import { ContactsContainer, ContactCard, Image, Name, Phone, TextContainer, WrapperButton, IconButton } from './styled';
+import { ContactsContainer, Heading, ContactCard, Image, Name, Phone, TextContainer, WrapperButton, IconButton } from './styled';
 
 interface Contact {
     id: number;
@@ -24,8 +24,9 @@ const ListCard: React.FC<Props> = ({ filteredContacts, onDelete, onToggleFavorit
 
     return (
         <>
-
+            <Heading>My Contact</Heading>
             <ContactsContainer>
+
                 {filteredContacts.map(contact => (
                     <ContactCard key={contact.id}>
                         <IconButton onClick={() => onToggleFavorite(contact.id)}>
@@ -44,9 +45,7 @@ const ListCard: React.FC<Props> = ({ filteredContacts, onDelete, onToggleFavorit
 
                             <MdDelete color="#FF6370" className="icon" style={{ zIndex: '1' }} />
                         </IconButton>
-                            <IconButton>
-                                <MdEdit className="icon" color="#54eafe" />
-                            </IconButton></WrapperButton>
+                        </WrapperButton>
                     </ContactCard>
                 ))}
             </ContactsContainer>

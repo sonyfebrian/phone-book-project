@@ -40,6 +40,19 @@ export const IconButton = styled.div`
   margin-right: 10px;
   cursor: pointer;
 `;
+export const Heading = styled.h1`
+font-size: 24px;
+font-weight: bold;
+max-width: 800px;
+color: white;
+border-bottom: 2px solid white;
+margin: 0 auto 20px; 
+padding-bottom: 5px;
+@media (max-width: 768px) {
+  /* Mobile view */
+  margin: 0 10px 20px; /* Center horizontally and add bottom margin */
+}
+`;
 
 export const WrapperButton = styled.div`
   flex: 1;

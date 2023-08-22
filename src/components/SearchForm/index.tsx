@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, LogoText, HeaderSearchForm, Input, Button } from './styled';
+import { Container, Header, HeaderSearchForm, Input, } from './styled';
 import styled from "@emotion/styled";
 
 const HeaderContainer = styled(Container)`
@@ -22,13 +22,13 @@ interface Props {
 
 const SearchForm: React.FC<Props> = ({ query, setQuery }) => {
     const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value); // Call the callback function to update the filter query
+        setQuery(event.target.value);
     };
     return (
         <>
             <Header>
                 <HeaderContainer>
-                    <LogoText>Contact</LogoText>
+
                     <HeaderSearchForm>
                         <Input
                             type="search"
@@ -37,7 +37,7 @@ const SearchForm: React.FC<Props> = ({ query, setQuery }) => {
                             onChange={handleFilterChange}
                         />
 
-                        <Button type="submit">Search</Button>
+
 
                     </HeaderSearchForm>
                 </HeaderContainer>

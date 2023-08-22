@@ -6,6 +6,7 @@ export const Input = styled('input')`
   border: 1px solid rgba(34, 36, 38, 0.15);
   border-radius: 3px;
   min-width: 280px;
+  
   &:focus,
   &:active {
     border-color: #85b7d9;
@@ -24,32 +25,13 @@ margin: 0 auto;
 `;
 
 export const Header = styled('header')`
-background-color: white;
+background-color: #171b2f;
+
 
 `
 
 
-export const Button = styled('button')`
-background-color: #2185d0;
-color: #ffffff;
-text-shadow: none;
-background-image: none;
-padding: 0.6rem 1.5rem;
-margin-left: 15px;
-border-radius: 3px;
-cursor: pointer;
-@media (max-width: 778px) {
-  margin-left: 0;
-  margin-top: 10px;
-}
-
-`
-
-export const LogoText = styled('h3')`
-margin: 0;
-
-`
 
 export const HeaderSearchForm = styled('div')`
-  margin-left: auto;
+margin: 0 auto;
 `;

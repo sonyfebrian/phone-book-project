@@ -76,9 +76,22 @@ border-radius: 10px !important;
   padding: 20px;
   display: flex;
   gap: 1rem;
+  z-index: 2;
 `;
 
-
+export const Heading = styled.h1`
+font-size: 24px;
+font-weight: bold;
+max-width: 800px;
+color: white;
+border-bottom: 2px solid white;
+margin: 0 auto 20px; 
+padding-bottom: 5px;
+@media (max-width: 768px) {
+  /* Mobile view */
+  margin: 0 10px 20px; /* Center horizontally and add bottom margin */
+}
+`;
 export const ContactsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;

@@ -11,11 +11,14 @@ export const globalStyles = css`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
   }
   html{overflow-x: hidden;}
   body {
     font-family: "Inter", sans-serif;
     background-color: #171b2f;
+    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   }
   .cirlce1 {
     height: 20rem;
@@ -23,6 +26,7 @@ export const globalStyles = css`
     position: absolute;
     top: 50%;
     left: 73%;
+
   }
  
   .cirlce2 {
